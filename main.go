@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
-const listenAddr = ":8000"
-
 func main() {
-	log.Printf("Staring listening at: %s", listenAddr)
+	port := os.Getenv("PORT")
+	log.Printf("Staring listening at port %s", port)
 
-	err := http.ListenAndServe(listenAddr, http.HandlerFunc(echo))
+	err := http.ListenAndServe(":"+port, http.HandlerFunc(echo))
 	if err != nil {
 		log.Fatalf("Server exited with error: %s", err)
 	}
