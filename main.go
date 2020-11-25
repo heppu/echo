@@ -11,7 +11,7 @@ func main() {
 	port := os.Getenv("PORT")
 	fmt.Printf("Staring listening at port %s", port)
 
-	err := http.ListenAndServe(":"+port, http.HandlerFunc(echo))
+	err := http.ListenAndServe("0.0.0.0:"+port, http.HandlerFunc(echo))
 	if err != nil {
 		fmt.Printf("Server exited with error: %s", err)
 		os.Exit(1)
