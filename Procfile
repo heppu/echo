@@ -1,1 +1,1 @@
-web: ${GOBIN}/echo
+web: ./bin/echo
