@@ -22,5 +22,10 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	path := strings.TrimLeft(r.URL.Path, "/")
 	words := strings.Split(path, "/")
 	resp := strings.Join(words, " ")
+	
+	if r.URL.Query().Get("format") == "upper" {
+		resp = strings.ToUpper(resp)
+	}
+	
 	fmt.Fprint(w, resp)
 }

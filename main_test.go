@@ -34,6 +34,15 @@ func TestEcho_EmptyPath(t *testing.T) {
 	assertEqual(t, "", resp)
 }
 
+func TestEcho_FormatUpperCase(t *testing.T) {
+	w := httptest.NewRecorder()
+	r := httptest.NewRequest(http.MethodGet, "/hello?format=upper", nil)
+	echo(w, r)
+
+	resp := readResponse(t, w)
+	assertEqual(t, "HELLO", resp)
+}
+
 func readResponse(t testing.TB, w *httptest.ResponseRecorder) string {
 	resp, err := ioutil.ReadAll(w.Result().Body)
 	if err != nil {
