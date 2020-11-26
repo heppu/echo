@@ -18,6 +18,18 @@ func main() {
 	}
 }
 
+const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Title of the document</title>
+</head>
+<body>
+
+<u>%s</u>
+
+</body>
+</html>`
+
 func echo(w http.ResponseWriter, r *http.Request) {
 	path := strings.TrimLeft(r.URL.Path, "/")
 	words := strings.Split(path, "/")
@@ -26,6 +38,5 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Query().Get("format") == "upper" {
 		resp = strings.ToUpper(resp)
 	}
-	resp = "<u>" + resp + "</u>"
-	fmt.Fprint(w, resp)
+	fmt.Fprintf(w, html, resp)
 }
