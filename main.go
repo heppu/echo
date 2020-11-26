@@ -26,6 +26,6 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Query().Get("format") == "upper" {
 		resp = strings.ToUpper(resp)
 	}
-	
+	resp = "<u>" + resp + "</u>"
 	fmt.Fprint(w, resp)
 }
